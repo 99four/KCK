@@ -56,19 +56,23 @@ def main():
 
 
     plot_parameters = [
-        [efforts_2cel, results_2cel, 'm'],
-        [efforts_2cel_rs, results_2cel_rs, 'r'],
-        [efforts_cel, results_cel, 'k'],
-        [efforts_cel_rs, results_cel_rs, 'g'],
-        [efforts_rsel, results_rsel, 'b']
+        [efforts_rsel, results_rsel, 'b', '1-Evol-RS'],
+        [efforts_cel_rs, results_cel_rs, 'g', '1-Coev-RS'],
+        [efforts_2cel_rs, results_2cel_rs, 'r', '2-Coev-RS'],
+        [efforts_cel, results_cel, 'k', '1-Coev'],
+        [efforts_2cel, results_2cel, 'm', '2-Coev']
     ]
 
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(8, 8))
     #
-    for efforts, results, color in plot_parameters:
-        plt.plot(efforts, results, color = color)
+    for efforts, results, color, label in plot_parameters:
+        plt.plot(efforts, results, color=color, label=label)
+    # plt.axis([0, 50000, 0.6, 1])
+    plt.legend(loc=4)
+    plt.xlabel('Rozegranych gier')
+    plt.ylabel('Odsetek wygranych gier')
     plt.show()
-    # plt.savefig('myplot.pdf')
+    plt.savefig('myplot.pdf')
     plt.close()
 
 if __name__ == '__main__':
