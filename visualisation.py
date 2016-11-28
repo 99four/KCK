@@ -67,8 +67,8 @@ def main():
     #
     for efforts, results, color, label in plot_parameters:
         plt.plot(efforts, results, color=color, label=label)
-    # plt.axis([0, 50000, 0.6, 1])
     plt.legend(loc=4)
+    plt.xlim(xmax=500000)
     plt.xlabel('Rozegranych gier')
     plt.ylabel('Odsetek wygranych gier')
     plt.show()
