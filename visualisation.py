@@ -14,7 +14,7 @@ def main():
         with open(file_name, 'r') as file:
             load_data(file.readlines(), efforts[i], results_types[i])
 
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(6, 6))
     plt_params = [
         ['b', '1-Evol-RS'],
         ['g', '1-Coev-RS'],
