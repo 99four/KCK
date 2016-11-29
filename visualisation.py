@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 def mean(numbers):
     return float(sum([float(i) for i in numbers])) / len(numbers)
 
+def load_data(lines_type, efforts_type, results_type):
+    for i in range(1, len(lines_type)):
+        line_values = lines_type[i].split(',')
+        efforts_type.append(line_values[1])
+        results_type.append(mean(line_values[2:]))
+
 def main():
     efforts_2cel = []
     efforts_2cel_rs = []
@@ -29,31 +35,11 @@ def main():
         lines_cel_rs = file_cel_rs.readlines()
         lines_rsel = file_rsel.readlines()
 
-    for i in range(1, len(lines_2cel)):
-        line_values = lines_2cel[i].split(',')
-        efforts_2cel.append(line_values[1])
-        results_2cel.append(mean(line_values[2:]))
-
-    for i in range(1, len(lines_2cel_res)):
-        line_values = lines_2cel_res[i].split(',')
-        efforts_2cel_rs.append(line_values[1])
-        results_2cel_rs.append(mean(line_values[2:]))
-
-    for i in range(1, len(lines_cel)):
-        line_values = lines_cel[i].split(',')
-        efforts_cel.append(line_values[1])
-        results_cel.append(mean(line_values[2:]))
-
-    for i in range(1, len(lines_cel_rs)):
-        line_values = lines_cel_rs[i].split(',')
-        efforts_cel_rs.append(line_values[1])
-        results_cel_rs.append(mean(line_values[2:]))
-
-    for i in range(1, len(lines_rsel)):
-        line_values = lines_rsel[i].split(',')
-        efforts_rsel.append(line_values[1])
-        results_rsel.append(mean(line_values[2:]))
-
+    load_data(lines_2cel, efforts_2cel, results_2cel)
+    load_data(lines_2cel_res, efforts_2cel_rs, results_2cel_rs)
+    load_data(lines_cel, efforts_cel, results_cel)
+    load_data(lines_cel_rs, efforts_cel_rs, results_cel_rs)
+    load_data(lines_rsel, efforts_rsel, results_rsel)
 
     plot_parameters = [
         [efforts_rsel, results_rsel, 'b', '1-Evol-RS'],
@@ -71,8 +57,8 @@ def main():
     plt.xlim(xmax=500000)
     plt.xlabel('Rozegranych gier')
     plt.ylabel('Odsetek wygranych gier')
-    plt.show()
     plt.savefig('myplot.pdf')
+    plt.show()
     plt.close()
 
 if __name__ == '__main__':
