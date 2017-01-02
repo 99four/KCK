@@ -1,0 +1,6 @@
+*.rtf
+*.pdf
+*.csv
+
+#ide
+.idea/

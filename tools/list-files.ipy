@@ -1,0 +1,3 @@
+#/usr/bin/env ipython
+
+!find . -size +400c -a -size -4k
