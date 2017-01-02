@@ -45,8 +45,7 @@ def hsv2rgb(h, s, v):
     return (h, s, v)
 
 def gradient_rgb_bw(v):
-    #TODO
-    return (0, 0, 0)
+    return (v, v, v)
 
 
 def gradient_rgb_gbr(v):
