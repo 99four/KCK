@@ -41,45 +41,86 @@ def plot_color_gradients(gradients, names):
     fig.savefig('my-gradients.pdf')
 
 def hsv2rgb(h, s, v):
-    #TODO
-    return (h, s, v)
+    if s == 0.0: return [v, v, v]
+    i = int(h*6.)
+    f = (h*6.)-i; p,q,t = v*(1.-s), v*(1.-s*f), v*(1.-s*(1.-f)); i%=6
+    if i == 0: return [v, t, p]
+    if i == 1: return [q, v, p]
+    if i == 2: return [p, v, t]
+    if i == 3: return [p, q, v]
+    if i == 4: return [t, p, v]
+    if i == 5: return [v, p, q]
 
 def gradient_rgb_bw(v):
     return (v, v, v)
 
 
 def gradient_rgb_gbr(v):
-    #TODO
-    return (1, 1, 1)
+    if v<0.5:
+        return(0,1-v*2,v*2)
+    else:
+        v=v-0.5;
+        return (v*2, 0, 1-v*2)
 
 
 def gradient_rgb_gbr_full(v):
-    #TODO
-    return (0, 0, 0)
+    if v<0.25:
+        return(0,1,v*4)
+    elif v<0.5:
+        v=v-0.25
+        return (0,1-v*4 ,1)
+    elif v<0.75:
+        v=v-0.5
+        return (v*4, 0, 1)
+    else:
+        v=v-0.75
+        return (1, 0, 1-v*4)
+
 
 
 def gradient_rgb_wb_custom(v):
-    #TODO
-    return (0, 0, 0)
+    k =1/7;
+    if v<k:
+
+        return(1,1-v*7,1)
+    elif v<2*k:
+        v=v-k
+        return (1-v*7,0,1)
+    elif v<3*k:
+        v=v-2*k
+        return (0, v*7, 1)
+    elif v<4*k:
+        v=v-3*k
+        return (0,1,1-v*7)
+    elif v<5*k:
+        v=v-4*k
+        return (v*7, 1, 0)
+    elif v<6*k:
+        v=v-5*k
+        return (1, 1-v*7, 0)
+    else:
+        v=v-6*k
+        return (1-v*7, 0, 0)
+
 
 
 def gradient_hsv_bw(v):
-    #TODO
-    return hsv2rgb(0, 0, 0)
+    return hsv2rgb(v, 0, v)
 
 
 def gradient_hsv_gbr(v):
-    #TODO
-    return hsv2rgb(0, 0, 0)
+    v=v*0.65
+    return hsv2rgb(v+0.35, 1, 1)
 
 def gradient_hsv_unknown(v):
-    #TODO
-    return hsv2rgb(0, 0, 0)
+
+    v=v*0.4
+    return hsv2rgb(0.4-v, 0.5, 1)
 
 
 def gradient_hsv_custom(v):
     #TODO
-    return hsv2rgb(0, 0, 0)
+    return hsv2rgb(v, v, 1-v)
 
 
 if __name__ == '__main__':
