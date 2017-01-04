@@ -14,4 +14,4 @@ for i, file_name in enumerate(['samolot02.jpg', 'samolot03.jpg', 'samolot09.jpg'
     plt.axis('off')
     plt.imshow(image, cmap="gray")
 
-plt.show()
+plt.savefig('images.pdf')
