@@ -54,14 +54,12 @@ def hsv2rgb(h, s, v):
 def gradient_rgb_bw(v):
     return (v, v, v)
 
-
 def gradient_rgb_gbr(v):
     if v<0.5:
         return(0,1-v*2,v*2)
     else:
         v=v-0.5;
         return (v*2, 0, 1-v*2)
-
 
 def gradient_rgb_gbr_full(v):
     if v<0.25:
@@ -76,12 +74,9 @@ def gradient_rgb_gbr_full(v):
         v=v-0.75
         return (1, 0, 1-v*4)
 
-
-
 def gradient_rgb_wb_custom(v):
     k =1/7;
     if v<k:
-
         return(1,1-v*7,1)
     elif v<2*k:
         v=v-k
