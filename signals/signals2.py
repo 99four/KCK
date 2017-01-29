@@ -5,13 +5,13 @@ from pylab import *
 from numpy import *
 from scipy import *
 
-w = 50           # czÄ™stotliwoÅ›Ä‡ prÃ³bkowania [Hz]
-T = 1           # rozwaÅ¼any okres [s]
+w = 50
+T = 1
 spektrum=[]
-n = T * w        # liczba prÃ³bek
-t = linspace(0, T, n, endpoint=False) # punkty na osi OX [s]
-f = lambda t : sin(2*pi*t)    # def. funkcji
-signal = f(t)                 # funkcja sprÃ³bkowana
+n = T * w
+t = linspace(0, T, n, endpoint=False)
+f = lambda t : sin(2*pi*t)
+signal = f(t)
 plt.figure("slonce")
 array = genfromtxt('spots.txt')
 t=linspace(0,len(array),len(array))
@@ -42,14 +42,11 @@ print("czestotliwosc ",maxf)
 plt.xlabel('freqs')
 plt.ylabel('spektrum')
 show()
-#plt.pause(3)
-#input()
-#close()
 figure("sinusy z usunienta 2hz")
 T=1
 w=20
-n = T * w        # liczba prÃ³bek
-t = linspace(0, T, n, endpoint=False) # punkty na osi OX [s]
+n = T * w
+t = linspace(0, T, n, endpoint=False)
 f = lambda t : sin(2*pi*t)+sin(4*pi*t)
 f1=lambda t : sin(2*pi*t)
 subplot(311)
@@ -61,9 +58,8 @@ subplot(312)
 signal1 = fft(signal)
 signal1 = signal1
 
-signal1[1]=0
-signal1[19]=0
-#signal1[18]=0
+signal1[2]=0
+signal1[18]=0
 print(np.around(signal1))
 f2=ifft(np.around(signal1) )
 plot(t,f2)
